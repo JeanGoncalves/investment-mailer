@@ -1,0 +1,26 @@
+{
+  "name": "investment-mailer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JeanGoncalves/investment-mailer.git"
+  },
+  "author": "Jean Goncalves <jeanfpgoncalves@live.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JeanGoncalves/investment-mailer/issues"
+  },
+  "homepage": "https://github.com/JeanGoncalves/investment-mailer#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "config": "^3.3.3",
+    "consign": "^0.1.6",
+    "express": "^4.17.1"
+  }
+}
