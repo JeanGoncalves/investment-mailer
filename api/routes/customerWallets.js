@@ -1,6 +1,10 @@
 module.exports = app => {
-    const controller = app.controllers.customerWallets
+    const init = app.controllers.init
+    const customerWallets = app.controllers.customerWallets
 
+    app.route('/')
+        .get(init.main)
+    
     app.route('/api/v1/customer-wallets')
-        .get(controller.listCustomerWallets)
+        .get(customerWallets.listCustomerWallets)
 }
