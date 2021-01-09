@@ -1,14 +1,16 @@
+"use strict"
+
 const nodemailer = require('nodemailer')
 
 async function sendMail() {
     const remetente = nodemailer.createTransport({
-        host: 'smtp.office365.com',
-        service: 'smtp.office365.com',
-        port: 587,
+        host: process.env.MAIL_HOST,
+        service: process.env.MAIL_SERVICE,
+        port: process.env.MAIL_PORT,
         secure: true,
         auth: {
-            user: 'jeanfpgoncalves@live.com',
-            pass: 'Jfp980152g'
+            user: process.env.MAIL_USER,
+            pass: process.env.MAIL_PASS
         }
     })
 
@@ -19,7 +21,11 @@ async function sendMail() {
         text: 'Email enviado pelo NodeJs hospedado no Heroku'
     }
 
-    return await remetente.sendMail(destinatario)
+    try {
+        return await remetente.sendMail(destinatario)
+    } catch (error) {
+        throw 
+    }
 }
 
 module.exports = app => {
