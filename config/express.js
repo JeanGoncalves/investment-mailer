@@ -15,8 +15,6 @@ module.exports = () => {
         .then('controllers')
         .then('routes')
         .into(app)
-
-    require('../api/routes/customerWallets')(app)
     
     return app
 }
