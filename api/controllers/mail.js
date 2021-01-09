@@ -5,7 +5,7 @@ async function sendMail() {
         host: 'smtp.office365.com',
         service: 'smtp.office365.com',
         port: 587,
-        // secure: true,
+        secure: true,
         auth: {
             user: 'jeanfpgoncalves@live.com',
             pass: 'Jfp980152g'
