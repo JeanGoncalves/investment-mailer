@@ -7,15 +7,14 @@ async function sendMail(res) {
         host: process.env.MAIL_HOST,
         service: process.env.MAIL_SERVICE,
         port: process.env.MAIL_PORT,
-        secure: true,
-        secureConnection: true,
+        secure: false,
         auth: {
             user: process.env.MAIL_USER,
             pass: process.env.MAIL_PASS
         },
-        tls:{
-            ciphers:'SSLv3'
-        }
+        tls: { 
+            rejectUnauthorized: false
+        },
     })
 
     const destinatario = {
