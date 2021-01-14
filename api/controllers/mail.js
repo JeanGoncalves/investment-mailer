@@ -2,8 +2,8 @@
 
 const nodemailer = require('nodemailer')
 
-async function sendMail() {
-    const remetente = nodemailer.createTransport({
+async function sendMail(res) {
+    const smtpTransport = nodemailer.createTransport({
         host: process.env.MAIL_HOST,
         service: process.env.MAIL_SERVICE,
         port: process.env.MAIL_PORT,
@@ -21,19 +21,34 @@ async function sendMail() {
         text: 'Email enviado pelo NodeJs hospedado no Heroku'
     }
 
-    try {
-        return await remetente.sendMail(destinatario)
+    smtpTransport.verify((error, success) => {
+        if (error) {
+            res.json({output: 'error', type: 'verify', message: error})
+            res.end()
+        } else {
+            smtpTransport.sendMail(destinatario, (error, info) => {
+                if (error) {
+                    res.json({output: 'error', type: 'sendMail', message: error})
+                }
+                res.json({output: 'sucess', message: info})
+                res.end()
+            })
+        }
+    })
+    
+    /* try {
+        return await 
     } catch (error) {
-        throw 
-    }
+        throw Error(error)
+    } */
 }
 
 module.exports = app => {
 
     const controller = {
         send: async (req, res) => {
-            console.log(await sendMail())
-            return res.status(200).send("sucesso")
+            await sendMail(res)
+            // return res.status(200).send("sucesso")
         }
     }
 
