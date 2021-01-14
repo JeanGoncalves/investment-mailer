@@ -8,9 +8,13 @@ async function sendMail(res) {
         service: process.env.MAIL_SERVICE,
         port: process.env.MAIL_PORT,
         secure: true,
+        secureConnection: true,
         auth: {
             user: process.env.MAIL_USER,
             pass: process.env.MAIL_PASS
+        },
+        tls:{
+            ciphers:'SSLv3'
         }
     })
 
